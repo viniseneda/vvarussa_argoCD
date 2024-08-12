@@ -43,10 +43,10 @@ spec:
   rules:
     http:
       paths:
-      - path: /will42/
-        pathType: Prefix
-        backend:
-          service:
-            name: will42
-            port:
-              number: 80
+        - path: /will42/
+          pathType: Prefix
+          backend:
+            service:
+              name: will42
+              port:
+                number: 80
