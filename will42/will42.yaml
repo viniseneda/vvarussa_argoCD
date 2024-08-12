@@ -41,7 +41,6 @@ metadata:
   namespace: dev
 spec:
   rules:
-  - host: "will42.com"
     http:
       paths:
       - path: /will42/
