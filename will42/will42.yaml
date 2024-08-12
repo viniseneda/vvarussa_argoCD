@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: will42
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: will42
+  template:
+    metadata:
+      labels:
+        app: will42
+    spec:
+      containers:
+      - image: wil42/playground:v1
+        name: will42
+        ports:
+        - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: will42
+spec:
+  ports:
+  - port: 80
+    targetPort: 8888
+  selector:
+    app: will42
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: will42
+spec:
+  rules:
+  - host: "will42.com"
+    http:
+      paths:
+      - path: /will42/
+        pathType: Prefix
+        backend:
+          service:
+            name: will42
+            port:
+              number: 80
